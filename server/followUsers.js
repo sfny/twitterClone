@@ -3,9 +3,7 @@ Meteor.methods({
     return Meteor.users.findOne({
       username: username
     }, {
-      fields: {
-        'username': 1
-      }
+      fields: { 'username': 1 }
     });
   },
 
@@ -14,22 +12,5 @@ Meteor.methods({
       follower: Meteor.user().username,
       following: username
     });
-  },
-
-  'recommendUsers': function() {
-    if (Meteor.user()) {
-      var currentFollowings = UserUtils.findFollowings(Meteor.user().username);
-
-      var recUsers = Meteor.users.find({
-        username: {
-          $nin: currentFollowings
-        }
-      }, {
-        fields: { 'username': 1 },
-        limit: 5
-      }).fetch();
-
-      return recUsers;
-    }
   }
 });

@@ -4,10 +4,17 @@
 
 <body>
   <div class="row">
-    <div class="col-md-4 col-xs-4">
+    <div class="col-md-3 col-xs-3">
       {{> userManagement}}
+      {{#if currentUser}}
       {{> followUsers}}
+      {{/if}}
     </div>
-    <div class="col-md-8 col-xs-8">{{> tweetBox}}</div>
+    <div class="col-md-4 col-xs-4">
+      {{> tweetBox}}
+      {{#if currentUser}}
+      {{> tweetFeed}}
+      {{/if}}
+    </div>
   </div>
 </body>

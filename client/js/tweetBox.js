@@ -17,7 +17,17 @@ Template.tweetBox.helpers({
         !Meteor.user()) {
       return 'disabled';
     }
+  },
+  insertTweet: function(tweet) {  
+  if (Meteor.user()) {
+    Tweets.insert({
+      message: tweet,
+      user: Meteor.user().username,
+      timestamp: new Date()
+    });
   }
+}
+
 });
 
 Template.tweetBox.events({
@@ -36,3 +46,4 @@ Template.tweetBox.events({
 Template.tweetBox.onRendered(function () {
   Session.set('numChars', 0);
 });
+
